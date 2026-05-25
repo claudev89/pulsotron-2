@@ -14,6 +14,8 @@ class PacienteRelationManager extends RelationManager
 {
     protected static string $relationship = 'pacientes';
 
+    protected static ?string $inverseRelationship = 'enfermedades';
+
     public function form(Form $form): Form
     {
         return $form

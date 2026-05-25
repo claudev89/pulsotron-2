@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class Paciente extends Model
 {
+    use HasFactory;
 
     protected $guarded = [];
     protected $primaryKey = 'rut';
@@ -83,5 +85,10 @@ class Paciente extends Model
     public function medicamentos()
     {
         return $this->belongsToMany(Medicamento::class);
+    }
+
+    public function enfermedades(): BelongsToMany
+    {
+        return $this->belongsToMany(Enfermedad::class, 'enfermedads_pacientes', 'paciente_rut', 'enfermedad_id');
     }
 }
